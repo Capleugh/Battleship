@@ -5,7 +5,6 @@ require './lib/ship'
 class ShipTest < Minitest::Test
   def setup
     @cruiser = Ship.new("Cruiser", 3)
-
   end
 
   def test_it_exists
@@ -33,5 +32,10 @@ class ShipTest < Minitest::Test
 
     @cruiser.hit
     assert_equal 1, @cruiser.health
+  end
+
+  def test_it_can_be_sunk
+
+    assert_equal true, @cruiser.sunk?
   end
 end
