@@ -26,4 +26,45 @@ attr_reader :coordinate, :ship
       @ship.hit
     end
   end
+
+  # def render(show = false)
+  #   if @fired_upon == false
+  #     if show == true
+  #       "S"
+  #     else
+  #       "."
+  #     end
+  #   elsif @fired_upon == true
+  #     if show == false && @ship == nil
+  #       "M"
+  #     else show == false && @ship != nil
+  #       if @ship.health >= 1
+  #         "H"
+  #       else @ship.health <= 0
+  #         "X"
+  #       end
+  #     end
+  #   end
+  # end
+
+# test writing with empty? and sunk?
+  def render(show = false)
+    if fired_upon?
+      if @ship == nil
+        "M"
+      else @ship != nil
+        if @ship.health >= 1
+          "H"
+        else @ship.health <= 0
+          "X"
+        end
+      end
+    else
+      if show == true
+        "S"
+      else
+        "."
+      end
+    end
+  end
 end
