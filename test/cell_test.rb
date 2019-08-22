@@ -50,18 +50,31 @@ class CellTest < Minitest::Test
     assert_equal 2, @cell.ship.health
   end
 
-  def test_it_can_render
+  def test_it_can_render_space_not_fired_upon
     assert_equal ".", @cell.render
+  end
 
+  def test_it_can_render_a_miss
     @cell.fire_upon
     assert_equal "M", @cell.render
+  end
 
+  def test_it_can_render_a_hit
     @cell.place_ship(@cruiser)
     @cell.fire_upon
     assert_equal "H", @cell.render
+  end
 
+  def test_it_can_render_a_sunk_ship
+    @cell.place_ship(@cruiser)
     @cell.fire_upon
     @cell.fire_upon
+    @cell.fire_upon
+
     assert_equal "X", @cell.render
+  end
+
+  def test_it_can_show_ship
+    assert_equal "S", @cell.render(true)
   end
 end
