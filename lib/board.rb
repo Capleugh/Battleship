@@ -1,4 +1,5 @@
 require './lib/cell'
+require './lib/ship'
 
 class Board
 
@@ -31,9 +32,5 @@ class Board
     else
       false
     end
-  end
-
-  def valid_placement?
-
   end
 end
