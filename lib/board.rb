@@ -21,7 +21,6 @@ class Board
       'D3' => Cell.new('D3'),
       'D4' => Cell.new('D4'),
       }
-      @coordinate = coordinate
   end
 
   # def valid_coordinate?(coordinate)
