@@ -1,11 +1,13 @@
 require './lib/cell'
-require './lib/ship'
+# require './lib/ship'
 
 class Board
+
   attr_reader :cells
 
   def initialize
     @cells = {
+
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -43,13 +45,6 @@ class Board
   end
 
 
-
-  def all_numbers_sequential?(coords)
-    true
-  end
-
-
-
 # def valid_placement?(ship, coordinates)
 #    if !valid_multiple_coordinates(coordinates)
 #      false
@@ -67,4 +62,23 @@ class Board
 # def valid_vertical
 # end
 
+  # def all_numbers_consecutive?(coords)
+  #   cells = @cells.keys.to_a
+  #   numbers = cells.map do |coordinate|
+  #     coordinate[1]
+  #   end
+  #   if #all numbers consecutive
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+
+  def all_numbers_consecutive?(coords)
+    numbers = coords.map do |coord|
+      coord[1].to_i
+    end
+
+    numbers.each_cons(2).all? {|x,y| x.to_i == y.to_i - 1}
+  end
 end
