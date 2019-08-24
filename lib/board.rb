@@ -24,9 +24,7 @@ class Board
    "D3" => Cell.new("D3"),
    "D4" => Cell.new("D4"),
     }
-
   end
-
   # def valid_coordinate?(coordinate)
   #   if @cells.has_key?(coordinate)
   #     true
@@ -39,6 +37,31 @@ class Board
   #
   # end
 
-  # def all_numbers_sequential?(coords)
+
+  # array = @cells.keys.to_a
+  # array.each do |coord|
+  #   coord.chars
+  #
+  # if
   # end
+
+  # def all_numbers_consecutive?(coords)
+  #   cells = @cells.keys.to_a
+  #   numbers = cells.map do |coordinate|
+  #     coordinate[1]
+  #   end
+  #   if #all numbers consecutive
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+
+  def all_numbers_consecutive?(coords)
+    numbers = coords.map do |coord|
+      coord[1].to_i
+    end
+
+    numbers.each_cons(2).all? {|x,y| x.to_i == y.to_i - 1}
+  end
 end
