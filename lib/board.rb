@@ -1,5 +1,5 @@
 require './lib/cell'
-require './lib/ship'
+# require './lib/ship'
 
 class Board
 
@@ -24,13 +24,21 @@ class Board
    "D3" => Cell.new("D3"),
    "D4" => Cell.new("D4"),
     }
+
   end
 
-  def valid_coordinate?(coordinate)
-    if @cells.has_key?(coordinate)
-      true
-    else
-      false
-    end
-  end
+  # def valid_coordinate?(coordinate)
+  #   if @cells.has_key?(coordinate)
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+
+  # def array_equals_length
+  #
+  # end
+
+  # def all_numbers_sequential?(coords)
+  # end
 end
