@@ -25,13 +25,14 @@ class Board
    "D4" => Cell.new("D4"),
     }
   end
-  # def valid_coordinate?(coordinate)
-  #   if @cells.has_key?(coordinate)
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
+  
+  def valid_coordinate?(coordinate)
+    if @cells.has_key?(coordinate)
+      true
+    else
+      false
+    end
+  end
 
   # def array_equals_length
   #
