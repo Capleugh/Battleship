@@ -35,6 +35,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_numbers_consecutive
+    skip
     coords = ["A1", "A2", "A3"]
     coords_2 = ["A1", "A2", "A4"]
     assert_equal true, @board.all_numbers_consecutive?(coords)
@@ -42,6 +43,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_numbers_same
+    skip
     coords_3 = ["A1", "B1", "C1"]
     coords_4 = ["A1", "B1", "B2"]
     assert_equal true, @board.all_numbers_same?(coords_3)
@@ -49,6 +51,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_letters_consecutive
+    skip
     coords_3 = ["A1", "B1", "C1"]
     coords_4 = ["A1", "B1", "B2"]
     assert_equal true, @board.all_letters_consecutive?(coords_3)
@@ -56,6 +59,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_letters_same
+    skip
     coords = ["A1", "A2", "A3"]
     coords_4 = ["A1", "B1", "B2"]
     assert_equal true, @board.all_letters_same?(coords)
@@ -68,7 +72,8 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_column
-    skip
+    assert_equal true, @board.valid_column?(@cruiser, ["A1", "B1", "C1"])
+    assert_equal false, @board.valid_column?(@cruiser, ["A1", "B1", "B2"])
   end
 
   def test_coordinates_are_consecutive
