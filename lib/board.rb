@@ -89,4 +89,12 @@ class Board
   end
     letters.uniq.count == 1
   end
+
+  def valid_column?(coords)
+    if all_letters_consecutive?(coords) == true && all_numbers_same?(coords) == true
+      true
+    else
+      false
+    end
+  end
 end
