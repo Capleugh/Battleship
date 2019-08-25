@@ -43,12 +43,12 @@ class BoardTest < Minitest::Test
     coords_2 = ["A1", "A2", "A3"]
     # A1, B2, C3 for diagonal
 
-    assert_equal true, @board.all_numbers_same(coords)
-    assert_equal false, @board.all_numbers_same(coords_2)
+    assert_equal true, @board.all_numbers_same?(coords)
+    assert_equal false, @board.all_numbers_same?(coords_2)
   end
 
   def test_all_letters_consecutive
-    
+
     coords = ["A1", "B1", "C1"]
     coords_2 = ["A1", "B1", "D1"]
     assert_equal true, @board.all_letters_consecutive?(coords)
@@ -58,15 +58,19 @@ class BoardTest < Minitest::Test
   def test_all_letters_same
     coords = ["A1", "A2", "A3"]
     coords_2 = ["A1", "B1", "C1"]
-    assert_equal true, @board.all_letters_same(coords)
-    assert_equal false, @board.all_letters_same(coords_2)
+    assert_equal true, @board.all_letters_same?(coords)
+    assert_equal false, @board.all_letters_same?(coords_2)
   end
 
-  def test_valid_horizontal_placement?
-    skip
+  def test_valid_row
+    coords = ["A1", "A2", "A3"]
+    coords_2 = ["A1", "B1", "C1"]
+
+    assert_equal true, @board.valid_row?(coords)
+    assert_equal false, @board.valid_row?(coords_2)
   end
 
-  def test_valid_vertical_placement?
+  def test_valid_column
     skip
   end
 

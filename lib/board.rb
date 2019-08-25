@@ -61,18 +61,13 @@ class Board
 #    end
 # def valid_vertical
 # end
-
-  # def all_numbers_consecutive?(coords)
-  #   cells = @cells.keys.to_a
-  #   numbers = cells.map do |coordinate|
-  #     coordinate[1]
-  #   end
-  #   if #all numbers consecutive
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
+  def valid_row?(coords)
+    if all_numbers_consecutive?(coords) == true && all_letters_same?(coords) == true
+      true
+    else
+      false
+    end
+  end
 
   def all_numbers_consecutive?(coords)
     numbers = coords.map do |coord|
@@ -82,7 +77,7 @@ class Board
     numbers.each_cons(2).all? {|x,y| x == y - 1}
   end
 
-  def all_numbers_same(coords)
+  def all_numbers_same?(coords)
     numbers = coords.map do |coord|
       coord[1].to_i
     end
@@ -97,8 +92,8 @@ class Board
 
     letters.each_cons(2).all? {|x,y| x == y - 1}
   end
-  
-  def all_letters_same(coords)
+
+  def all_letters_same?(coords)
     letters = coords.map do |coord|
       coord[0]
     end
