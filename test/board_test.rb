@@ -48,19 +48,18 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_letters_consecutive
-    skip
+    
     coords = ["A1", "B1", "C1"]
     coords_2 = ["A1", "B1", "D1"]
-    assert_equal true, @board.test_all_letters_consecutive?(coords)
-    assert_equal false, @board.test_all_letters_consecutive?(coords_2)
+    assert_equal true, @board.all_letters_consecutive?(coords)
+    assert_equal false, @board.all_letters_consecutive?(coords_2)
   end
 
   def test_all_letters_same
-    skip
     coords = ["A1", "A2", "A3"]
     coords_2 = ["A1", "B1", "C1"]
-    assert_equal true, @board.test_all_letters_same(coords)
-    assert_equal false, @board.test_all_letters_same(coords_2)
+    assert_equal true, @board.all_letters_same(coords)
+    assert_equal false, @board.all_letters_same(coords_2)
   end
 
   def test_valid_horizontal_placement?

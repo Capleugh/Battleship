@@ -90,15 +90,15 @@ class Board
     numbers.uniq.count == 1
   end
 
-  # def all_letters_consecutive?(coords)
-  #   letters = coords.map do |coord|
-  #     coord[0].ord
-  #   end
-  #
-  #   letters.each_cons(2).all? {|x,y| x == y - 1}
-  # end
+  def all_letters_consecutive?(coords)
+    letters = coords.map do |coord|
+      coord[0].ord
+    end
 
-  def all_letters_same
+    letters.each_cons(2).all? {|x,y| x == y - 1}
+  end
+  
+  def all_letters_same(coords)
     letters = coords.map do |coord|
       coord[0]
     end
