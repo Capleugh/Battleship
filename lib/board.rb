@@ -60,6 +60,13 @@ class Board
 # def valid_vertical
 # end
 
+  def valid_row?(coords)
+    if all_numbers_consecutive?(coords) == true && all_letters_same?(coords) == true
+      true
+    else
+      false
+    end
+  end
 
   def all_numbers_consecutive?(coords)
     numbers = coords.map do |coord|
@@ -73,6 +80,7 @@ class Board
     numbers = coords.map do |coord|
       coord[1].to_i
     end
+
     numbers.uniq.count == 1
   end
 

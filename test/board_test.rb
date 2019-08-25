@@ -29,7 +29,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_number_of_coordinates_in_array_equals_ship_length
-    skip
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
     assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
   end
@@ -77,6 +76,7 @@ class BoardTest < Minitest::Test
     assert_equal true, @board.valid_column?(coords_3)
     assert_equal false, @board.valid_column?(coords_4)
   end
+
 
   def test_coordinates_are_consecutive
     skip
