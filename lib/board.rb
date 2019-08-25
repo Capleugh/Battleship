@@ -36,7 +36,6 @@ class Board
   end
 
   def valid_placement?(ship_param, coordinate_array)
-    # if the ship's length is equal to number of coordinates, then true
     if ship_param.length == coordinate_array.length
       true
     else
@@ -56,29 +55,38 @@ class Board
 #      true
 #    elsif
 #      if valid_horizontal_placement?(ship, coordinates)
-
 #      true
 #    end
 # def valid_vertical
 # end
 
-  # def all_numbers_consecutive?(coords)
-  #   cells = @cells.keys.to_a
-  #   numbers = cells.map do |coordinate|
-  #     coordinate[1]
-  #   end
-  #   if #all numbers consecutive
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
 
   def all_numbers_consecutive?(coords)
     numbers = coords.map do |coord|
       coord[1].to_i
     end
 
-    numbers.each_cons(2).all? {|x,y| x.to_i == y.to_i - 1}
+    numbers.each_cons(2).all? {|x,y| x == y - 1}
+  end
+
+  def all_numbers_same?(coords)
+    numbers = coords.map do |coord|
+      coord[1].to_i
+    end
+    numbers.uniq.count == 1
+  end
+
+  def all_letters_consecutive?(coords)
+    letters = coords.map do |coord|
+      coord[0].ord
+  end
+    letters.each_cons(2).all? {|x,y| x == y - 1}
+  end
+
+  def all_letters_same?(coords)
+    letters = coords.map do |coord|
+      coord[0].ord
+  end
+    letters.uniq.count == 1
   end
 end

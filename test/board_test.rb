@@ -29,6 +29,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_number_of_coordinates_in_array_equals_ship_length
+    skip
     assert_equal false, @board.valid_placement?(@cruiser, ["A1", "A2"])
     assert_equal false, @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
   end
@@ -41,22 +42,32 @@ class BoardTest < Minitest::Test
   end
 
   def test_all_numbers_same
-    skip
+    coords_3 = ["A1", "B1", "C1"]
+    coords_4 = ["A1", "B1", "B2"]
+    assert_equal true, @board.all_numbers_same?(coords_3)
+    assert_equal false, @board.all_numbers_same?(coords_4)
   end
 
-  def test_all_letters_sequential
-    skip
+  def test_all_letters_consecutive
+    coords_3 = ["A1", "B1", "C1"]
+    coords_4 = ["A1", "B1", "B2"]
+    assert_equal true, @board.all_letters_consecutive?(coords_3)
+    assert_equal false, @board.all_letters_consecutive?(coords_4)
   end
 
   def test_all_letters_same
-    skip
+    coords = ["A1", "A2", "A3"]
+    coords_4 = ["A1", "B1", "B2"]
+    assert_equal true, @board.all_letters_same?(coords)
+    assert_equal false, @board.all_letters_same?(coords_4)
   end
 
-  def test_valid_horizontal_placement?
+  def test_valid_row
     skip
+    assert_equal true, @board.valid_row?(@cruiser, ["A1", "A2", "A3"])
   end
 
-  def test_valid_vertical_placement?
+  def test_valid_column
     skip
   end
 
