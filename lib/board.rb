@@ -79,6 +79,30 @@ class Board
       coord[1].to_i
     end
 
-    numbers.each_cons(2).all? {|x,y| x.to_i == y.to_i - 1}
+    numbers.each_cons(2).all? {|x,y| x == y - 1}
+  end
+
+  def all_numbers_same(coords)
+    numbers = coords.map do |coord|
+      coord[1].to_i
+    end
+
+    numbers.uniq.count == 1
+  end
+
+  # def all_letters_consecutive?(coords)
+  #   letters = coords.map do |coord|
+  #     coord[0].ord
+  #   end
+  #
+  #   letters.each_cons(2).all? {|x,y| x == y - 1}
+  # end
+
+  def all_letters_same
+    letters = coords.map do |coord|
+      coord[0]
+    end
+
+    letters.uniq.count == 1
   end
 end
