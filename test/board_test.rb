@@ -72,8 +72,10 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_column
-    assert_equal true, @board.valid_column?(@cruiser, ["A1", "B1", "C1"])
-    assert_equal false, @board.valid_column?(@cruiser, ["A1", "B1", "B2"])
+    coords_3 = ["A1", "B1", "C1"]
+    coords_4 = ["A1", "B1", "B2"]
+    assert_equal true, @board.valid_column?(coords_3)
+    assert_equal false, @board.valid_column?(coords_4)
   end
 
   def test_coordinates_are_consecutive
