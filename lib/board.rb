@@ -1,5 +1,4 @@
 require './lib/cell'
-# require './lib/ship'
 
 class Board
 
@@ -7,7 +6,6 @@ class Board
 
   def initialize
     @cells = {
-
       "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
       "A3" => Cell.new("A3"),
@@ -25,47 +23,6 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4"),
       }
-  end
-
-  def valid_coordinate?(coordinate)
-    if @cells.has_key?(coordinate)
-      true
-    else
-      false
-    end
-  end
-
-  def valid_placement?(ship_param, coordinate_array)
-    if ship_param.length == coordinate_array.length
-      true
-    else
-      false
-    end
-  end
-
-
-# def valid_placement?(ship, coordinates)
-#    if !valid_multiple_coordinates(coordinates)
-#      false
-#    elsif
-#      !all_cells_empty?(coordinates)
-#      false
-#    elsif
-#      valid_vertical_placement?(ship, coordinates)
-#      true
-#    elsif
-#      if valid_horizontal_placement?(ship, coordinates)
-#      true
-#    end
-# def valid_vertical
-# end
-
-  def valid_row?(coords)
-    if all_numbers_consecutive?(coords) == true && all_letters_same?(coords) == true
-      true
-    else
-      false
-    end
   end
 
   def all_numbers_consecutive?(coords)
@@ -98,9 +55,37 @@ class Board
     letters.uniq.count == 1
   end
 
+  def valid_row?(coords)
+    if all_numbers_consecutive?(coords) == true && all_letters_same?(coords) == true
+      true
+    else
+      false
+    end
+  end
+
   def valid_column?(coords)
     if all_letters_consecutive?(coords) == true && all_numbers_same?(coords) == true
       true
+    else
+      false
+    end
+  end
+
+  def valid_coordinate?(coordinate)
+    if @cells.has_key?(coordinate) && @cells[coordinate].empty?
+      true
+    else
+      false
+    end
+  end
+
+  def valid_placement?(ship, coords)
+    all_coords = coords.all? do |coord|
+      valid_coordinate?(coord)
+    end
+
+    if ship.length == coords.length && all_coords
+      valid_row?(coords) ^ valid_column?(coords)
     else
       false
     end
