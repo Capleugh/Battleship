@@ -25,67 +25,55 @@ class Board
       }
   end
 
-  def all_numbers_consecutive?(coords)
-    numbers = coords.map do |coord|
-      coord[1].to_i
+  def all_numbers_consecutive?(coordinates)
+    numbers = coordinates.map do |coordinate|
+      coordinate[1].to_i
     end
 
     numbers.each_cons(2).all? {|x,y| x == y - 1}
   end
 
-  def all_numbers_same?(coords)
-    numbers = coords.map do |coord|
-      coord[1].to_i
+  def all_numbers_same?(coordinates)
+    numbers = coordinates.map do |coordinate|
+      coordinate[1].to_i
     end
 
     numbers.uniq.count == 1
   end
 
-  def all_letters_consecutive?(coords)
-    letters = coords.map do |coord|
-      coord[0].ord
+  def all_letters_consecutive?(coordinates)
+    letters = coordinates.map do |coordinate|
+      coordinate[0].ord
   end
     letters.each_cons(2).all? {|x,y| x == y - 1}
   end
 
-  def all_letters_same?(coords)
-    letters = coords.map do |coord|
-      coord[0].ord
+  def all_letters_same?(coordinates)
+    letters = coordinates.map do |coordinate|
+      coordinate[0].ord
   end
     letters.uniq.count == 1
   end
 
-  def valid_row?(coords)
-    if all_numbers_consecutive?(coords) == true && all_letters_same?(coords) == true
-      true
-    else
-      false
-    end
+  def valid_row?(coordinates)
+    all_numbers_consecutive?(coordinates) && all_letters_same?(coordinates)
   end
 
-  def valid_column?(coords)
-    if all_letters_consecutive?(coords) == true && all_numbers_same?(coords) == true
-      true
-    else
-      false
-    end
+  def valid_column?(coordinates)
+    all_letters_consecutive?(coordinates) && all_numbers_same?(coordinates)
   end
 
   def valid_coordinate?(coordinate)
-    if @cells.has_key?(coordinate) && @cells[coordinate].empty?
-      true
-    else
-      false
-    end
+    @cells.has_key?(coordinate) && @cells[coordinate].empty?
   end
 
-  def valid_placement?(ship, coords)
-    all_coords = coords.all? do |coord|
-      valid_coordinate?(coord)
+  def valid_placement?(ship, coordinates)
+    all_coordinates = coordinates.all? do |coordinate|
+      valid_coordinate?(coordinate)
     end
 
-    if ship.length == coords.length && all_coords
-      valid_row?(coords) ^ valid_column?(coords)
+    if ship.length == coordinates.length && all_coordinates
+      valid_row?(coordinates) ^ valid_column?(coordinates)
     else
       false
     end
