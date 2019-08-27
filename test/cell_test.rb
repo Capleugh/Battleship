@@ -75,6 +75,8 @@ class CellTest < Minitest::Test
   end
 
   def test_it_can_show_ship
+    @cell.place_ship(@cruiser)
+    
     assert_equal "S", @cell.render(true)
   end
 end

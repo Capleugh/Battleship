@@ -38,12 +38,10 @@ attr_reader :coordinate, :ship
           "H"
         end
       end
+    elsif show == true && @ship
+      "S"
     else
-      if show == true
-        "S"
-      else
-        "."
-      end
+      "."
     end
   end
 end
