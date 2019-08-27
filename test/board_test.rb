@@ -101,4 +101,10 @@ class BoardTest < Minitest::Test
     assert_equal @cruiser, cell_3.ship
     assert cell_3.ship == cell_2.ship
   end
+
+  def test_it_can_render_cells
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal "1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", @board.b_render
+    assert_equal "1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", @board.b_render(true)
+  end
 end
