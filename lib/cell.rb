@@ -21,6 +21,7 @@ attr_reader :coordinate, :ship
   end
 
   def fire_upon
+    return if @fired_upon
     @fired_upon = true
     if @ship
       @ship.hit
@@ -38,12 +39,11 @@ attr_reader :coordinate, :ship
           "H"
         end
       end
+    elsif show == true && @ship
+      "S"
     else
-      if show == true
-        "S"
-      else
-        "."
-      end
+      "."
     end
   end
 end
+ 
