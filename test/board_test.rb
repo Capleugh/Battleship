@@ -26,9 +26,9 @@ class BoardTest < Minitest::Test
     refute @board.valid_coordinate?("E1")
     refute @board.valid_coordinate?("A22")
 
-    # @board.place(@cruiser, ["A1", "A2", "A3"])
-    #
-    # refute @board.valid_placement?(@submarine, ["A1", "B1"])
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+
+    refute @board.valid_placement?(@submarine, ["A1", "B1"])
   end
 
   def test_number_of_coordinates_in_array_equals_ship_length
@@ -67,11 +67,9 @@ class BoardTest < Minitest::Test
   end
 
   def test_ships_do_not_overlap
-    skip
     @board.place(@cruiser, @coords)
 
     refute @board.valid_placement?(@submarine, ["A1", "B1"])
-    # part of valid_placement? method
   end
 
   def test_coordinates_are_consecutive
@@ -92,7 +90,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_place_ship_in_its_cells
-    skip
     @board.place(@cruiser, ["A1", "A2", "A3"])
 
     cell_1 = @board.cells["A1"]
