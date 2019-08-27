@@ -45,3 +45,4 @@ attr_reader :coordinate, :ship
     end
   end
 end
+ 

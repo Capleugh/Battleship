@@ -95,3 +95,4 @@ C #{@cells["C1"].render(show)} #{@cells["C2"].render(show)} #{@cells["C3"].rende
 D #{@cells["D1"].render(show)} #{@cells["D2"].render(show)} #{@cells["D3"].render(show)} #{@cells["D4"].render(show)} \n"
   end
 end
+ 
