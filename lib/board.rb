@@ -29,7 +29,6 @@ class Board
     numbers = coordinates.map do |coordinate|
       coordinate[1].to_i
     end
-
     numbers.each_cons(2).all? {|x,y| x == y - 1}
   end
 
@@ -37,21 +36,20 @@ class Board
     numbers = coordinates.map do |coordinate|
       coordinate[1].to_i
     end
-
     numbers.uniq.count == 1
   end
 
   def all_letters_consecutive?(coordinates)
     letters = coordinates.map do |coordinate|
       coordinate[0].ord
-  end
+    end
     letters.each_cons(2).all? {|x,y| x == y - 1}
   end
 
   def all_letters_same?(coordinates)
     letters = coordinates.map do |coordinate|
       coordinate[0].ord
-  end
+    end
     letters.uniq.count == 1
   end
 
@@ -95,4 +93,3 @@ C #{@cells["C1"].render(show)} #{@cells["C2"].render(show)} #{@cells["C3"].rende
 D #{@cells["D1"].render(show)} #{@cells["D2"].render(show)} #{@cells["D3"].render(show)} #{@cells["D4"].render(show)} \n"
   end
 end
- 
