@@ -1,6 +1,7 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
+require './lib/turn'
 
 class Setup
 
@@ -11,72 +12,72 @@ class Setup
     @computer_submarine = Ship.new("Submarine", 2)
     @player_cruiser = Ship.new("Cruiser", 3)
     @player_submarine = Ship.new("Submarine", 2)
+    @turn = Turn.new(@computer_board, @player_board)
   end
 
   def main_menu
-    puts "Welcome to BATTLESHIP
-    Enter p to play. Enter q to quit."
-    input = gets.chomp.downcase
-    until input == "p" || input == "q"
-      if input = "p"
-        # initiate game
-        place_computer_ships(@computer_board)
-      elsif input = "q"
+    loop do
+      puts "Welcome to BATTLESHIP
+      Enter p to play. Enter q to quit."
+      input = gets.chomp.downcase
+      if input == "p"
+        start
+        break
+      elsif input == "q"
         puts "Bye!"
+        break
       else
-        puts "Please type or p or q."
+        puts "Please type p or q."
         input = gets.chomp.downcase
       end
     end
   end
 
-  def initiate_game(board)
-    # put place computer ships and place player ships in this method
+  def start
     place_computer_ships
-    place_players_ships
-    display_winner
-    main_menu
+    place_player_ships
+    take_turns
   end
 
   def generate_random_coordinates
-    # range of coordinates to array, sample (3)
-    coordinates = board.cells.keys
-    coordinates.to_a.sample(3)
+    coordinates = @computer_board.cells.keys
+    random_coordinates = coordinates.to_a.sample(3)
   end
 
-  def place_computer_ships(board)
-    # generate random coordinates?
-    until coordinates.valid_placement?
+  def place_computer_ships
+    coordinates = generate_random_coordinates
+    generate_random_coordinates
+    if @computer_board.valid_placement?(@computer_cruiser, coordinates)
+      @board.place(@computer_cruiser, coordinates)
+    else
       generate_random_coordinates
-      if coordinates.valid_placement?
-        @board.place(ship, coordinates)
-        # when ships are placed at valid positions
-      else
-        # generate random coordinates again until valid
-        generate_random_coordinates
-        coordinates
-      end
     end
   end
+  end
 
-  def place_player_ships(board)
+  def place_player_ships
     puts "I have laid out my ships on the grid.
     You now need to lay out your two ships.
-    The Cruiser is two units long and the Submarine is three units long."
-    puts board.b_render
+    The Cruiser is three units long and the Submarine is two units long."
+    puts @player_board.b_render
     puts "Enter the squares for the Cruiser (3 spaces):
     >"
-    input = gets.chomp
-    until input.valid_placement?
-      if input.valid_placement?
-        @board.place(ship, coordinates)
-        # loop back up to input again to ask a second time
-
+    input = gets.chomp.upcase.split.to_a
+    # until @player_board.valid_placement?(@player_cruiser, input)
+      if @player_board.valid_placement?(@player_cruiser, input)
+        @player_board.place(@player_cruiser, input)
       else
         puts "Enter valid coordinates for your ships. Ships can be placed horizontally or diagonally in empty spaces but may not be placed diagonally."
-        input = gets.chomp
+        input = gets.chomp.upcase.split.to_a
       end
-    end
+    # end
+  end
+
+  def take_turns
+    @turn.select_coordinate
+    @turn.initiate_player_hit(coordinate_input)
+    @turn.initiate_computer_hit(coordinate_input)
+    @turn.check_winner
   end
 
   def display_winner(winner)
@@ -92,6 +93,3 @@ class Setup
       main_menu
   end
 end
-end
-# research how to generate random stuff (coordinats, hit coordinates, look back at valid_placement? method to maek sure cells are lined up properly)
-# look up range function
