@@ -71,7 +71,7 @@ class Board
       valid_coordinate?(coordinate)
     end
 
-    if ship.length == coordinates.length && all_coordinates
+    if ship.length == coordinates.size && all_coordinates
       valid_row?(coordinates) ^ valid_column?(coordinates)
     else
       false
