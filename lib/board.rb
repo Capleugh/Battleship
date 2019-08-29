@@ -62,6 +62,7 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
+
     @cells.has_key?(coordinate) && @cells[coordinate].empty?
   end
 
