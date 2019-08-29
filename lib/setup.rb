@@ -50,12 +50,10 @@ class Setup
   end
 
   def place_computer_ships
+    coordinates = generate_random_coordinates
     generate_random_coordinates
-  # until coordinates.valid_placement?
-    # generate_random_coordinates
-    if coordinates.valid_placement?
-      @board.place(ship, coordinates)
-      # when ships are placed at valid positions
+    if @computer_board.valid_placement?(@computer_cruiser, coordinates)
+      @board.place(@computer_cruiser, coordinates)
     else
       generate_random_coordinates
     end
@@ -65,7 +63,7 @@ class Setup
     puts "I have laid out my ships on the grid.
     You now need to lay out your two ships.
     The Cruiser is two units long and the Submarine is three units long."
-    puts board.b_render
+    puts @computer_board.b_render
     puts "Enter the squares for the Cruiser (3 spaces):
     >"
     input = gets.chomp
