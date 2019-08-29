@@ -36,32 +36,28 @@ class Setup
     take_turns
   end
 
-  def initiate_game(board)
-    # put place computer ships and place player ships in this method
-    # place_computer_ships
-    # place_players_ships
-    # display_winner
-    # main_menu
-  end
+  # def initiate_game(computer_board, player_board)
+  #   # put place computer ships and place player ships in this method
+  #   # place_computer_ships
+  #   # place_players_ships
+  #   # display_winner
+  #   # main_menu
+  # end
 
   def generate_random_coordinates
-    # range of coordinates to array, sample (3)
-    coordinates = board.cells.keys
-    coordinates.to_a.sample(3)
+    coordinates = @computer_board.cells.keys
+    random_coordinates = coordinates.to_a.sample(3)
   end
 
   def place_computer_ships
-    # generate random coordinates?
-    until coordinates.valid_placement?
+    generate_random_coordinates
+  # until coordinates.valid_placement?
+    # generate_random_coordinates
+    if coordinates.valid_placement?
+      @board.place(ship, coordinates)
+      # when ships are placed at valid positions
+    else
       generate_random_coordinates
-      if coordinates.valid_placement?
-        @board.place(ship, coordinates)
-        # when ships are placed at valid positions
-      else
-        # generate random coordinates again until valid
-        generate_random_coordinates
-        coordinates
-      end
     end
   end
 
