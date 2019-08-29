@@ -1,11 +1,13 @@
 class Turn
 
-  def initialize(board_1, board_2)
-    @computer_board = board_1
-    @player_board = board_2
+  attr_reader :computer_board, :player_board
+
+  def initialize(computer_board, player_board)
+    @computer_board = computer_board
+    @player_board = player_board
   end
 
-  def select_coordinate
+  def select_player_coordinate
     puts "Enter the coordinate for your shot:"
     coordinate_input = gets.chomp
 
@@ -13,10 +15,11 @@ class Turn
       puts "Please enter a valid coordinate:"
       coordinate_input = gets.chomp
     end
+  end
 
-    # you want to test your hit on computer's board
-    # while loop
-    # instance variable for computer board and player board
+
+  def select_computer_coordinate
+
   end
 
   def initiate_player_hit(coordinate_input)
@@ -49,6 +52,10 @@ class Turn
     end
     # research random hit
     # no shot on same cell
+  end
+
+  def method_name
+
   end
 
   # show both boards while debugging. write separate method for this
