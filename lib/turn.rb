@@ -11,7 +11,7 @@ class Turn
     puts "Enter the coordinate for your shot:"
     coordinate_input = gets.chomp
 
-    until @computer_board.valid_coordinate?(coordinate_input) do
+    until @player_board.valid_coordinate?(coordinate_input) do
       puts "Please enter a valid coordinate:"
       coordinate_input = gets.chomp
     end
@@ -19,7 +19,7 @@ class Turn
 
 
   def select_computer_coordinate
-
+    @comupter_board.generate_random_coordinates
   end
 
   def initiate_player_hit(coordinate_input)
@@ -50,13 +50,5 @@ class Turn
     elsif @player_board.cell[coordinate_input].render == "X"
       puts "Your shot on #{coordinate_input} sunk your opponent's ship."
     end
-    # research random hit
-    # no shot on same cell
   end
-
-  def method_name
-
-  end
-
-  # show both boards while debugging. write separate method for this
 end
