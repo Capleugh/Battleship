@@ -77,4 +77,3 @@ class CellTest < Minitest::Test
     assert_equal "S", @cell.render(true)
   end
 end
- 
