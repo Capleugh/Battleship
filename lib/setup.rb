@@ -14,15 +14,15 @@ class Setup
   end
 
   def main_menu
-    puts "Welcome to BATTLESHIP
-    Enter p to play. Enter q to quit."
-    input = gets.chomp.downcase
-    until input == "p" || input == "q"
-      if input = "p"
-        # initiate game
-        place_computer_ships(@computer_board)
-      elsif input = "q"
+    loop do
+      puts "Welcome to BATTLESHIP
+      Enter p to play. Enter q to quit."
+      input = gets.chomp.downcase
+      if input == "p"
+        start
+      elsif input == "q"
         puts "Bye!"
+        break
       else
         puts "Please type or p or q."
         input = gets.chomp.downcase
@@ -30,12 +30,18 @@ class Setup
     end
   end
 
+  def start
+    place_computer_ships
+    place_player_ships
+    take_turns
+  end
+
   def initiate_game(board)
     # put place computer ships and place player ships in this method
-    place_computer_ships
-    place_players_ships
-    display_winner
-    main_menu
+    # place_computer_ships
+    # place_players_ships
+    # display_winner
+    # main_menu
   end
 
   def generate_random_coordinates
@@ -44,7 +50,7 @@ class Setup
     coordinates.to_a.sample(3)
   end
 
-  def place_computer_ships(board)
+  def place_computer_ships
     # generate random coordinates?
     until coordinates.valid_placement?
       generate_random_coordinates
@@ -59,7 +65,7 @@ class Setup
     end
   end
 
-  def place_player_ships(board)
+  def place_player_ships
     puts "I have laid out my ships on the grid.
     You now need to lay out your two ships.
     The Cruiser is two units long and the Submarine is three units long."
@@ -77,6 +83,10 @@ class Setup
         input = gets.chomp
       end
     end
+  end
+
+  def take_turns
+    # take turns until one player's ships are all sunk
   end
 
   def display_winner(winner)
