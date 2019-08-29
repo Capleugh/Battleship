@@ -1,7 +1,16 @@
+require './lib/ship'
+require './lib/cell'
+require './lib/board'
+
 class Setup
 
-  def initialize(board)
-    @board = board
+  def initialize
+    @computer_board = Board.new
+    @player_board = Board.new
+    @computer_cruiser = Ship.new("Cruiser", 3)
+    @computer_submarine = Ship.new("Submarine", 2)
+    @player_cruiser = Ship.new("Cruiser", 3)
+    @player_submarine = Ship.new("Submarine", 2)
   end
 
   def main_menu
@@ -11,7 +20,7 @@ class Setup
     until input == "p" || input == "q"
       if input = "p"
         # initiate game
-        place_computer_ships(board)
+        place_computer_ships(@computer_board)
       elsif input = "q"
         puts "Bye!"
       else
@@ -75,9 +84,14 @@ class Setup
   end
 
   def end_game
-
+    if @winner == @player
+      puts "You won!"
+      main_menu
+    else
+      puts "I won!"
+      main_menu
   end
 end
-
+end
 # research how to generate random stuff (coordinats, hit coordinates, look back at valid_placement? method to maek sure cells are lined up properly)
 # look up range function
